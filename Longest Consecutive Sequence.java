@@ -26,3 +26,34 @@ public class Solution {
         return max;
     }
 }
+
+/*
+The key factors about a cluster is: lowest, highest, and length.
+Map lowest and highest to length. To merge two neighbor clusters, 
+only need to update it's new lowest and highest, with new length.
+For every a[i], checking its neighbor a[i]-1 and a[i]+1 is enough.
+*/
+public class Solution {
+    public int longestConsecutive(int[] num) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int max = 1;
+        for(int i : num) {
+            if(map.containsKey(i)) continue;
+            map.put(i, 1);
+            if(map.containsKey(i - 1)) max = Math.max(max, Merge(map, i - 1, i));
+            if(map.containsKey(i + 1)) max = Math.max(max, Merge(map, i, i + 1));
+        }
+        return max;
+    }
+    
+    public int Merge(Map<Integer, Integer> map, int left, int right) {
+        int upper = right + map.get(right) -1;
+        int lower = left - map.get(left) + 1;
+        int len = upper - lower + 1;
+        map.put(upper, len);
+        map.put(lower, len);
+        return len;
+    }
+}
