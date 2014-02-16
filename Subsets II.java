@@ -19,6 +19,26 @@ If S = [1,2,2], a solution is:
 public class Solution {
     public ArrayList<ArrayList<Integer>> subsetsWithDup(int[] num) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+       ArrayList<Integer> sub = new ArrayList<Integer>();
+       res.add(sub);
+       if(num == null) return res;
+       Arrays.sort(num);
+       for(int i = 0; i < num.length; i++) {
+           int size = res.size();
+           for(int j = 0; j < size; j++) {
+               ArrayList<Integer> temp = new ArrayList<Integer>(res.get(j));
+               temp.add(num[i]);
+               if(!res.contains(temp))res.add(temp);
+           }
+       }
+       return res;
+    }
+}
+
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsetsWithDup(int[] num) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         if(num == null) return res;
         Arrays.sort(num);
         helper(res, num, 0);

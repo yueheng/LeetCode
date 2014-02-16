@@ -20,6 +20,25 @@ If S = [1,2,3], a solution is:
 */
 public class Solution {
     public ArrayList<ArrayList<Integer>> subsets(int[] S) {
+       ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+       ArrayList<Integer> sub = new ArrayList<Integer>();
+       res.add(sub);
+       if(S == null) return res;
+       Arrays.sort(S);
+       for(int i = 0; i < S.length; i++) {
+           int size = res.size();
+           for(int j = 0; j < size; j++) {
+               ArrayList<Integer> temp = new ArrayList<Integer>(res.get(j));
+               temp.add(S[i]);
+               res.add(temp);
+           }
+       }
+       return res;
+    }
+}
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsets(int[] S) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         if(S == null) return res;
         Arrays.sort(S);
