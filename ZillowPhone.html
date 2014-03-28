@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test</title>
+<script>
+function myfunction() {
+change = document.getElementById("box");
+if(change.style.background == 'blue') change.style.background = 'red';
+else change.style.background = 'blue';
+}
+</script>
+</head>
+
+<body>
+<div id="box" style="width:300px;height:150px;background-color:red"> Hello World!</div>
+<button onClick="myfunction()">submit</button>
+</body>
+</html>
